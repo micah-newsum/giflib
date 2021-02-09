@@ -1,2 +1,4 @@
 com\newsum\giflib\AppConfig.class
+com\newsum\giflib\model\Gif.class
+com\newsum\giflib\data\GifRepository.class
 com\newsum\giflib\controller\GifController.class
