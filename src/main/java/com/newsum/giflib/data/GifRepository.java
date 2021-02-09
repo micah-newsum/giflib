@@ -32,6 +32,23 @@ public class GifRepository
         return null;
     }
 
+    public List<Gif> findAllByName(String name)
+    {
+        List<Gif> gifs = new ArrayList<>();
+
+        for(Gif gif : ALL_GIFS)
+        {
+            String thisName = gif.getName().toLowerCase();
+            String thatName = name.toLowerCase();
+
+            if (thisName.contains(thatName))
+            {
+                gifs.add(gif);
+            }
+        }
+        return gifs;
+    }
+
     public List<Gif> getAllGifs()
     {
         return ALL_GIFS;
