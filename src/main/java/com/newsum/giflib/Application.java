@@ -5,10 +5,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 @EnableAutoConfiguration
-@ComponentScan //instructs framework to scan packages for controllers
-public class AppConfig
-{
+@ComponentScan
+public class Application {
     public static void main(String[] args) {
-        SpringApplication.run(AppConfig.class,args);
+        SpringApplication.run(Application.class, args);
     }
 }
