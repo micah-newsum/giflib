@@ -1,20 +1,21 @@
 package com.newsum.giflib.model;
 
-public class Category
-{
-    private int id;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Category {
+    private Long id;
     private String name;
+    private String colorCode;
+    private List<Gif> gifs = new ArrayList<>();
 
-    public Category(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    public Category(){}
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -25,4 +26,17 @@ public class Category
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getColorCode() {
+        return colorCode;
+    }
+
+    public void setColorCode(String colorCode) {
+        this.colorCode = colorCode;
+    }
+
+    public List<Gif> getGifs() {
+        return gifs;
+    }
+
 }
