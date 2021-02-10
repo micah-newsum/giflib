@@ -1,6 +1,8 @@
 package com.newsum.giflib.web.controller;
 
+import com.newsum.giflib.dao.CategoryDao;
 import com.newsum.giflib.model.Category;
+import com.newsum.giflib.service.CategoryService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +19,12 @@ import java.util.List;
 public class CategoryController
 {
     @Autowired
-    private SessionFactory sessionFactory;
+    private CategoryService categoryService;
 
     // Index of all categories
     @RequestMapping("/categories")
     public String listCategories(Model model) {
-        // TODO: Get all categories
-        Session session = sessionFactory.openSession();
-
-        List<Category> categories = session.createCriteria(Category.class).list();
-
-        session.close();
-
+        List<Category> categories = categoryService.findAll();
         model.addAttribute("categories",categories);
         return "category/index";
     }
