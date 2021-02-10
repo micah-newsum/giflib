@@ -1,7 +1,0 @@
-com\newsum\giflib\AppConfig.class
-com\newsum\giflib\model\Gif.class
-com\newsum\giflib\model\Category.class
-com\newsum\giflib\controller\GifController.class
-com\newsum\giflib\data\CategoryRepository.class
-com\newsum\giflib\data\GifRepository.class
-com\newsum\giflib\controller\CategoryController.class
