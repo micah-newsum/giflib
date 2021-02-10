@@ -1,12 +1,21 @@
 package com.newsum.giflib.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public class Gif {
+@Entity
+public class Gif
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private byte[] bytes;
+
+    @Lob
+    private byte[] bytes;// Gif image file data
     private String description;
+
+    @ManyToOne
     private Category category;
     private LocalDateTime dateUploaded = LocalDateTime.now();
     private String username = "You";
