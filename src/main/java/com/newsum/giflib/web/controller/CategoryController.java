@@ -1,5 +1,6 @@
 package com.newsum.giflib.web.controller;
 
+import com.newsum.giflib.Color;
 import com.newsum.giflib.dao.CategoryDao;
 import com.newsum.giflib.model.Category;
 import com.newsum.giflib.service.CategoryService;
@@ -44,6 +45,7 @@ public class CategoryController
     public String formNewCategory(Model model) {
         // TODO: Add model attributes needed for new form
         model.addAttribute("category",new Category());
+        model.addAttribute("colors", Color.values());
 
         return "category/form";
     }
