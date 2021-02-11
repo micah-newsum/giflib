@@ -39,7 +39,7 @@ public class CategoryController
     @RequestMapping("/categories/{categoryId}")
     public String category(@PathVariable Long categoryId, Model model) {
         // TODO: Get the category given by categoryId
-        Category category = null;
+        Category category = categoryService.findById(categoryId);
 
         model.addAttribute("category", category);
         return "category/details";
@@ -48,7 +48,6 @@ public class CategoryController
     // Form for adding a new category
     @RequestMapping("categories/add")
     public String formNewCategory(Model model) {
-        // TODO: Add model attributes needed for new form
         if (!model.containsAttribute("category"))
         {
             model.addAttribute("category",new Category());
@@ -61,8 +60,11 @@ public class CategoryController
     // Form for editing an existing category
     @RequestMapping("categories/{categoryId}/edit")
     public String formEditCategory(@PathVariable Long categoryId, Model model) {
-        // TODO: Add model attributes needed for edit form
-
+        if (!model.containsAttribute("category"))
+        {
+            model.addAttribute("category",categoryService.findById(categoryId));
+        }
+        model.addAttribute("colors", Color.values());
 
         return "category/form";
     }
