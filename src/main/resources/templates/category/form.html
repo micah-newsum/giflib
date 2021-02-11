@@ -21,7 +21,7 @@
             <div class="col s12 l8">
                 <select th:field="*{colorCode}" class="cs-select cs-skin-border">
                     <option value="" disabled="disabled">Category Color</option>
-                    <option style="color:#59b3b3">Aqua</option>
+                    <option th:each="color : ${colors}" th:value= "${color.hexCode}" th:text="${color.name}" th:tyle="|color:${color.hexCode}|">Aqua</option>
                 </select>
             </div>
         </div>
