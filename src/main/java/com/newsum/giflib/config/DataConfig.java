@@ -12,7 +12,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 import javax.sql.DataSource;
 
-@Configuration // this attonation signals spring to review class at boot time
+@Configuration // this annotation signals spring to review class at boot time
 @PropertySource("app.properties")
 public class DataConfig
 {
