@@ -4,6 +4,7 @@ import com.newsum.giflib.Color;
 import com.newsum.giflib.dao.CategoryDao;
 import com.newsum.giflib.model.Category;
 import com.newsum.giflib.service.CategoryService;
+import com.newsum.giflib.web.FlashMessage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,8 @@ public class CategoryController
         }
 
         categoryService.save(category);
+
+        redirectAttributes.addFlashAttribute("flash",new FlashMessage("Category successfully added!",FlashMessage.Status.SUCCESS));
 
         // TODO: Redirect browser to /categories
         return "redirect:/categories";
