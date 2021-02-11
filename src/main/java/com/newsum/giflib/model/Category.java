@@ -23,7 +23,7 @@ public class Category
     @Pattern(regexp = "#[0-9a-fA-F]{6}")
     private String colorCode;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Gif> gifs = new ArrayList<>();
 
     public Category(){}
