@@ -43,6 +43,7 @@ public class CategoryController
     @RequestMapping("categories/add")
     public String formNewCategory(Model model) {
         // TODO: Add model attributes needed for new form
+        model.addAttribute("category",new Category());
 
         return "category/form";
     }
@@ -51,6 +52,7 @@ public class CategoryController
     @RequestMapping("categories/{categoryId}/edit")
     public String formEditCategory(@PathVariable Long categoryId, Model model) {
         // TODO: Add model attributes needed for edit form
+
 
         return "category/form";
     }
@@ -66,11 +68,11 @@ public class CategoryController
 
     // Add a category
     @RequestMapping(value = "/categories", method = RequestMethod.POST)
-    public String addCategory() {
+    public String addCategory(Category category) {
         // TODO: Add category if valid data was received
 
         // TODO: Redirect browser to /categories
-        return null;
+        return "redirect:/categories";
     }
 
     // Delete an existing category
