@@ -31,7 +31,7 @@
             <div class="col s12 l8">
                 <select th:field="*{category.id}" class="cs-select cs-skin-border">
                     <option value="" disabled="disabled">Select a category</option>
-                    <option th:each="cat : ${categories}" th:value="${cat.id}" th:name="${cat.name}" th:style="|color:${cat.colorCode}|">Technology</option>
+                    <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}" th:style="|color:${cat.colorCode}|">Technology</option>
                 </select>
             </div>
         </div>
