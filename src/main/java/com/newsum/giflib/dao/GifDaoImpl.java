@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -20,6 +21,25 @@ public class GifDaoImpl implements GifDao
         List<Gif> gifs = session.createCriteria(Gif.class).list();
         session.close();
         return gifs;
+    }
+
+    @Override
+    public List<Gif> findAllFavorites()
+    {
+        Session session = sessionFactory.openSession();
+        List<Gif> gifs = session.createCriteria(Gif.class).list();
+        List<Gif> faves = new ArrayList<>();
+
+        for (Gif gif : gifs)
+        {
+            if (gif.isFavorite())
+            {
+                faves.add(gif);
+            }
+        }
+
+        session.close();
+        return faves;
     }
 
     @Override

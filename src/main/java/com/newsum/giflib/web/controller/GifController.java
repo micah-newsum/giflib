@@ -1,6 +1,5 @@
 package com.newsum.giflib.web.controller;
 
-import com.newsum.giflib.model.Category;
 import com.newsum.giflib.model.Gif;
 import com.newsum.giflib.service.CategoryService;
 import com.newsum.giflib.service.GifService;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +57,8 @@ public class GifController {
     // Favorites - index of all GIFs marked favorite
     @RequestMapping("/favorites")
     public String favorites(Model model) {
-        // TODO: Get list of all GIFs marked as favorite
-        List<Gif> faves = new ArrayList<>();
+        // Get list of all GIFs marked as favorite
+        List<Gif> faves = gifService.findAllFavorites();
 
         model.addAttribute("gifs",faves);
         model.addAttribute("username","Chris Ramacciotti"); // Static username
@@ -121,7 +121,7 @@ public class GifController {
             redirectAttributes.addFlashAttribute(gif);
 
             // Redirect back to the form
-            return String.format("redirect:/gif/%s/edit",gif.getId());
+            return String.format("redirect:/gifs/%s/edit",gif.getId());
         }
 
         gifService.save(gif,multipartFile);
@@ -145,11 +145,15 @@ public class GifController {
 
     // Mark/unmark an existing GIF as a favorite
     @RequestMapping(value = "/gifs/{gifId}/favorite", method = RequestMethod.POST)
-    public String toggleFavorite(@PathVariable Long gifId) {
-        // TODO: With GIF whose id is gifId, toggle the favorite field
+    public String toggleFavorite(@PathVariable Long gifId, Model model, HttpServletRequest req)
+    {
+        // With GIF whose id is gifId, toggle the favorite field
+        Gif gif = gifService.findById(gifId);
+        gifService.toggleFavorite(gif);
+        model.addAttribute("gif",gif);
 
-        // TODO: Redirect to GIF's detail view
-        return null;
+        // Redirect to GIF's detail view
+        return String.format("redirect:%s",req.getHeader("referer"));
     }
 
     // Search results
