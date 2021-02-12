@@ -1,6 +1,7 @@
 package com.newsum.giflib.dao;
 
 import com.newsum.giflib.model.Category;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -34,6 +35,7 @@ public class CategoryDaoImpl implements CategoryDao
     {
         Session session = sessionFactory.openSession();
         Category category = session.get(Category.class,id);
+        Hibernate.initialize(category.getGifs()); // Initializes gifs collection instead of defining fetch type as eager in @OneToMany of Category class.
         session.close();
         return category;
     }
@@ -57,7 +59,21 @@ public class CategoryDaoImpl implements CategoryDao
     }
 
     @Override
-    public void delete(Category category) {
+    public void delete(Category category)
+    {
+        // Open a session
+        Session session = sessionFactory.openSession();
 
+        // Begin a transaction
+        session.beginTransaction();
+
+        // Delete category
+        session.delete(category);
+
+        // Commit transaction
+        session.getTransaction().commit();
+
+        // Close session
+        session.close();
     }
 }
