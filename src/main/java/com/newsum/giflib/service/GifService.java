@@ -8,10 +8,9 @@ import java.util.List;
 public interface GifService
 {
     List<Gif> findAll();
-
     Gif findById(Long id);
-
     void save(Gif gif, MultipartFile file);
-
+    void toggleFavorite(Gif gif);
     void delete(Gif gif);
+    List<Gif> findAllFavorites();
 }
